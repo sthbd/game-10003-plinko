@@ -1,0 +1,134 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2n3iuuxpeoda"]
+
+[ext_resource type="PackedScene" uid="uid://dm8xo00f57g6o" path="res://prefabs/row/row.tscn" id="1_4urxv"]
+[ext_resource type="PackedScene" uid="uid://c10xx30ykpfho" path="res://prefabs/wall_peace/wallpeace.tscn" id="2_kmp7f"]
+[ext_resource type="Script" uid="uid://cruyleaghp5rr" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_oukth"]
+[ext_resource type="PackedScene" uid="uid://denj07so4ky0t" path="res://prefabs/player/player.tscn" id="4_mw8o4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mw8o4"]
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmp7f"]
+size = Vector2(650, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oukth"]
+size = Vector2(20, 140)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6s50w"]
+bounce = 0.7
+
+[node name="Planko level" type="Node2D"]
+
+[node name="pegs" type="Node2D" parent="."]
+
+[node name="row" parent="pegs" instance=ExtResource("1_4urxv")]
+position = Vector2(64, 256)
+
+[node name="row2" parent="pegs" instance=ExtResource("1_4urxv")]
+position = Vector2(96, 320)
+
+[node name="row3" parent="pegs" instance=ExtResource("1_4urxv")]
+position = Vector2(64, 384)
+
+[node name="row4" parent="pegs" instance=ExtResource("1_4urxv")]
+position = Vector2(88, 448)
+
+[node name="row5" parent="pegs" instance=ExtResource("1_4urxv")]
+position = Vector2(64, 512)
+
+[node name="row6" parent="pegs" instance=ExtResource("1_4urxv")]
+position = Vector2(88, 576)
+
+[node name="row7" parent="pegs" instance=ExtResource("1_4urxv")]
+position = Vector2(64, 640)
+
+[node name="walls" type="Node2D" parent="."]
+
+[node name="vertical wall" type="Node" parent="walls"]
+
+[node name="wallpeace" parent="walls/vertical wall" instance=ExtResource("2_kmp7f")]
+position = Vector2(1, 260)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="wallpeace2" parent="walls/vertical wall" instance=ExtResource("2_kmp7f")]
+position = Vector2(1.0000153, 380)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="wallpeace3" parent="walls/vertical wall" instance=ExtResource("2_kmp7f")]
+position = Vector2(1.0000305, 508)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="wallpeace4" parent="walls/vertical wall" instance=ExtResource("2_kmp7f")]
+position = Vector2(1.0000305, 636)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="vertical wall2" type="Node" parent="walls"]
+
+[node name="wallpeace" parent="walls/vertical wall2" instance=ExtResource("2_kmp7f")]
+position = Vector2(625, 263)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="wallpeace2" parent="walls/vertical wall2" instance=ExtResource("2_kmp7f")]
+position = Vector2(625, 383)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="wallpeace3" parent="walls/vertical wall2" instance=ExtResource("2_kmp7f")]
+position = Vector2(625, 511)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="wallpeace4" parent="walls/vertical wall2" instance=ExtResource("2_kmp7f")]
+position = Vector2(625, 639)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="bottom region" type="Node" parent="."]
+
+[node name="floor" type="StaticBody2D" parent="bottom region"]
+position = Vector2(310, 848)
+physics_material_override = SubResource("PhysicsMaterial_mw8o4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom region/floor"]
+shape = SubResource("RectangleShape2D_kmp7f")
+
+[node name="Rectangle" type="Node2D" parent="bottom region/floor"]
+script = ExtResource("3_oukth")
+size = Vector2(650, 20)
+corner_radius = 0.0
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="wall1" type="StaticBody2D" parent="bottom region"]
+position = Vector2(0, 774)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom region/wall1"]
+position = Vector2(0, -0.875)
+shape = SubResource("RectangleShape2D_oukth")
+
+[node name="Rectangle" type="Node2D" parent="bottom region/wall1"]
+script = ExtResource("3_oukth")
+size = Vector2(20, 140)
+corner_radius = 0.0
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="wall2" type="StaticBody2D" parent="bottom region"]
+position = Vector2(625, 774)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom region/wall2"]
+position = Vector2(0, -0.875)
+shape = SubResource("RectangleShape2D_oukth")
+
+[node name="Rectangle" type="Node2D" parent="bottom region/wall2"]
+script = ExtResource("3_oukth")
+size = Vector2(20, 140)
+corner_radius = 0.0
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="player" parent="." instance=ExtResource("4_mw8o4")]
+position = Vector2(336, 144)
+physics_material_override = SubResource("PhysicsMaterial_6s50w")

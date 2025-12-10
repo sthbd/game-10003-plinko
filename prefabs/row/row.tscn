@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm8xo00f57g6o"]
+
+[ext_resource type="PackedScene" uid="uid://dkpnmcg6f1s1i" path="res://prefabs/peg/peg.tscn" id="1_pugkt"]
+
+[node name="row" type="Node2D"]
+
+[node name="Peg" parent="." instance=ExtResource("1_pugkt")]
+modulate = Color(0.57878894, 0.0012143388, 0.7269726, 1)
+
+[node name="Peg2" parent="." instance=ExtResource("1_pugkt")]
+modulate = Color(0.9999998, 0.8320382, 0.99761754, 1)
+position = Vector2(64, 0)
+
+[node name="Peg3" parent="." instance=ExtResource("1_pugkt")]
+modulate = Color(0.33, 0.1221, 0.31960508, 1)
+position = Vector2(128, 0)
+
+[node name="Peg4" parent="." instance=ExtResource("1_pugkt")]
+modulate = Color(0.5803922, 0, 0.7254902, 1)
+position = Vector2(192, 0)
+
+[node name="Peg5" parent="." instance=ExtResource("1_pugkt")]
+modulate = Color(1, 0.83137256, 0.99607843, 1)
+position = Vector2(256, 0)
+
+[node name="Peg6" parent="." instance=ExtResource("1_pugkt")]
+modulate = Color(0.32941177, 0.12156863, 0.31764707, 1)
+position = Vector2(320, 0)
+
+[node name="Peg7" parent="." instance=ExtResource("1_pugkt")]
+modulate = Color(0.5803922, 0, 0.7254902, 1)
+position = Vector2(384, 0)
+
+[node name="Peg8" parent="." instance=ExtResource("1_pugkt")]
+position = Vector2(448, 0)

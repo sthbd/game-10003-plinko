@@ -11,12 +11,29 @@ config_version=5
 [application]
 
 config/name="New Game Project"
+run/main_scene="uid://b2n3iuuxpeoda"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=625
+window/size/viewport_height=850
 
 [dotnet]
 
 project/assembly_name="New Game Project"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/2d_shapes/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Levels/": "purple",
+"res://prefabs/": "green"
+}
 
 [rendering]
 
