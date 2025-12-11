@@ -19,12 +19,15 @@ public partial class Player : RigidBody2D
 	{
 		if (Freeze)
 		{
+
             // copy the new position to be the mouse position
             Vector2 newPosition = Position;
 
             // set the X positon to be the mouse positon 
 
             newPosition.X = GetViewport().GetMousePosition().X;
+
+
 
             // set the positon as the new positon 
             Position = newPosition;
@@ -33,17 +36,9 @@ public partial class Player : RigidBody2D
 
             {
                 Freeze = false;
+
             }
         }
-        if (!Dead)
-        {
-
-
-            Vector2 newCamPosition = GameCamera.Position;
-            newCamPosition.Y = Position.Y;
-
-            GameCamera.Position = newCamPosition;
-        }
-
+        
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2n3iuuxpeoda"]
+[gd_scene load_steps=16 format=3 uid="uid://b2n3iuuxpeoda"]
 
 [ext_resource type="PackedScene" uid="uid://dm8xo00f57g6o" path="res://prefabs/row/row.tscn" id="1_4urxv"]
 [ext_resource type="Script" uid="uid://cwilm6gq1c5hr" path="res://Levels/PlankoLevel.cs" id="1_n0c13"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://denj07so4ky0t" path="res://prefabs/player/player.tscn" id="4_mw8o4"]
 [ext_resource type="Script" uid="uid://dxkpxx8q7vfo7" path="res://prefabs/player/Player.cs" id="5_6s50w"]
 [ext_resource type="PackedScene" uid="uid://cggf71y32icww" path="res://prefabs/bucket/bucket.tscn" id="6_7ttce"]
-[ext_resource type="PackedScene" uid="uid://vagwek1p4l7m" path="res://prefabs/obstacles/obstacles.tscn" id="8_jpah1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mw8o4"]
 bounce = 0.36
@@ -26,7 +25,13 @@ bounce = 0.2
 bounce = 0.3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0c13"]
-size = Vector2(144.84163, 42.98271)
+size = Vector2(144.84163, 6.2582607)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jpah1"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hgs4"]
+size = Vector2(40, 40)
 
 [node name="Planko level" type="Node2D" node_paths=PackedStringArray("ScoreValue", "RestartMessage", "PlayerDisk")]
 script = ExtResource("1_n0c13")
@@ -90,6 +95,11 @@ position = Vector2(1, 260)
 rotation = 2.3561945
 scale = Vector2(0.99999994, 0.99999994)
 
+[node name="wallpeace5" parent="walls/vertical wall" instance=ExtResource("2_kmp7f")]
+position = Vector2(1, 121.00003)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
 [node name="wallpeace2" parent="walls/vertical wall" instance=ExtResource("2_kmp7f")]
 position = Vector2(1.0000153, 380)
 rotation = 2.3561945
@@ -109,6 +119,11 @@ scale = Vector2(0.99999994, 0.99999994)
 
 [node name="wallpeace" parent="walls/vertical wall2" instance=ExtResource("2_kmp7f")]
 position = Vector2(625, 263)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="wallpeace5" parent="walls/vertical wall2" instance=ExtResource("2_kmp7f")]
+position = Vector2(625, 127)
 rotation = 2.3561945
 scale = Vector2(0.99999994, 0.99999994)
 
@@ -209,44 +224,80 @@ PlankoLevelNode = NodePath("../..")
 
 [node name="PlayerDisk" type="Node2D" parent="."]
 
-[node name="player" parent="PlayerDisk" node_paths=PackedStringArray("GameCamera") instance=ExtResource("4_mw8o4")]
+[node name="player" parent="PlayerDisk" instance=ExtResource("4_mw8o4")]
 position = Vector2(330, 25)
 physics_material_override = SubResource("PhysicsMaterial_6s50w")
 script = ExtResource("5_6s50w")
-GameCamera = NodePath("")
+
+[node name="player2" parent="PlayerDisk" instance=ExtResource("4_mw8o4")]
+position = Vector2(509, 25)
+physics_material_override = SubResource("PhysicsMaterial_6s50w")
+script = ExtResource("5_6s50w")
+
+[node name="player3" parent="PlayerDisk" instance=ExtResource("4_mw8o4")]
+position = Vector2(107, 25)
+physics_material_override = SubResource("PhysicsMaterial_6s50w")
+script = ExtResource("5_6s50w")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(393, 135)
-rotation = 1.9352986
+position = Vector2(393, 276)
+rotation = -0.8691987
 physics_material_override = SubResource("PhysicsMaterial_n0c13")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2(-3.6510143, -3.9585342)
+rotation = -3.5734024
 shape = SubResource("RectangleShape2D_n0c13")
 
 [node name="Rectangle3" type="Node2D" parent="."]
-position = Vector2(399.36368, 135)
-rotation = 1.8828702
+position = Vector2(387.36368, 276)
+rotation = -7.58731
 script = ExtResource("3_oukth")
 size = Vector2(160, 29.091)
 corner_radius = 5.0
 metadata/_custom_type_script = "uid://cruyleaghp5rr"
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(242, 126)
-rotation = 3.7502406
+position = Vector2(357.9178, 576)
+rotation = 0.17683816
 physics_material_override = SubResource("PhysicsMaterial_n0c13")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-7.95555, 4.325404)
+position = Vector2(-13.450053, 37.958042)
 shape = SubResource("RectangleShape2D_n0c13")
 
 [node name="Rectangle4" type="Node2D" parent="."]
-position = Vector2(247.0822, 123.87413)
-rotation = 3.7502406
+position = Vector2(340.00003, 612.99994)
+rotation = 0.17683816
 script = ExtResource("3_oukth")
-size = Vector2(155.03552, 28.188364)
+size = Vector2(155.03552, 13.022715)
 corner_radius = 5.0
 metadata/_custom_type_script = "uid://cruyleaghp5rr"
 
-[node name="obstacles" parent="." instance=ExtResource("8_jpah1")]
+[node name="obstacles" type="Node2D" parent="."]
+
+[node name="cube3" type="StaticBody2D" parent="obstacles"]
+position = Vector2(192, 201)
+physics_material_override = SubResource("PhysicsMaterial_jpah1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/cube3"]
+rotation = 0.10625837
+shape = SubResource("RectangleShape2D_2hgs4")
+
+[node name="Rectangle" type="Node2D" parent="obstacles/cube3"]
+script = ExtResource("3_oukth")
+size = Vector2(40, 40)
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="cube4" type="StaticBody2D" parent="obstacles"]
+position = Vector2(485, 201)
+physics_material_override = SubResource("PhysicsMaterial_jpah1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/cube4"]
+rotation = 0.10625837
+shape = SubResource("RectangleShape2D_2hgs4")
+
+[node name="Rectangle" type="Node2D" parent="obstacles/cube4"]
+script = ExtResource("3_oukth")
+size = Vector2(40, 40)
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
