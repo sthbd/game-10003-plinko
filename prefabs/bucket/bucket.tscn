@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://cggf71y32icww"]
+
+[ext_resource type="Script" uid="uid://cruyleaghp5rr" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_t4nab"]
+[ext_resource type="Script" uid="uid://upit4qrnq212" path="res://prefabs/bucket/Bucket.cs" id="1_yr506"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f866"]
+size = Vector2(70, 100)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yr506"]
+bounce = 0.7
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4nab"]
+size = Vector2(21, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr506"]
+size = Vector2(30, 112)
+
+[node name="bucket" type="Area2D"]
+script = ExtResource("1_yr506")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_1f866")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_yr506")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(57, -56.000004)
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_t4nab")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(56, 0)
+shape = SubResource("RectangleShape2D_yr506")
+
+[node name="Rectangle" type="Node2D" parent="StaticBody2D/CollisionShape2D"]
+script = ExtResource("1_t4nab")
+size = Vector2(30, 112)
+corner_radius = 0.0
+fill_color = Color(0.24, 0.103199996, 0.24, 1)
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="Rectangle2" type="Node2D" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2(0, -57.000004)
+rotation = 0.7853982
+script = ExtResource("1_t4nab")
+size = Vector2(21, 21)
+corner_radius = 0.0
+fill_color = Color(0.24, 0.103199996, 0.24, 1)
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = -29.0
+offset_top = 23.0
+offset_right = 41.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.01, 0.01, 0.01, 1)
+theme_override_colors/font_outline_color = Color(0.62207985, 0.5376, 0.96, 1)
+theme_override_constants/outline_size = 7
+text = "100"
+horizontal_alignment = 1

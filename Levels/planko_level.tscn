@@ -1,11 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2n3iuuxpeoda"]
+[gd_scene load_steps=15 format=3 uid="uid://b2n3iuuxpeoda"]
 
 [ext_resource type="PackedScene" uid="uid://dm8xo00f57g6o" path="res://prefabs/row/row.tscn" id="1_4urxv"]
+[ext_resource type="Script" uid="uid://cwilm6gq1c5hr" path="res://Levels/PlankoLevel.cs" id="1_n0c13"]
 [ext_resource type="PackedScene" uid="uid://c10xx30ykpfho" path="res://prefabs/wall_peace/wallpeace.tscn" id="2_kmp7f"]
 [ext_resource type="Script" uid="uid://cruyleaghp5rr" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_oukth"]
 [ext_resource type="PackedScene" uid="uid://denj07so4ky0t" path="res://prefabs/player/player.tscn" id="4_mw8o4"]
+[ext_resource type="Script" uid="uid://dxkpxx8q7vfo7" path="res://prefabs/player/Player.cs" id="5_6s50w"]
+[ext_resource type="PackedScene" uid="uid://cggf71y32icww" path="res://prefabs/bucket/bucket.tscn" id="6_7ttce"]
+[ext_resource type="PackedScene" uid="uid://vagwek1p4l7m" path="res://prefabs/obstacles/obstacles.tscn" id="8_jpah1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mw8o4"]
+bounce = 0.36
 absorbent = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmp7f"]
@@ -15,9 +20,43 @@ size = Vector2(650, 20)
 size = Vector2(20, 140)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6s50w"]
-bounce = 0.7
+bounce = 0.2
 
-[node name="Planko level" type="Node2D"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n0c13"]
+bounce = 0.3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0c13"]
+size = Vector2(144.84163, 42.98271)
+
+[node name="Planko level" type="Node2D" node_paths=PackedStringArray("ScoreValue", "RestartMessage", "PlayerDisk")]
+script = ExtResource("1_n0c13")
+ScoreValue = NodePath("CanvasLayer/ScoreValue")
+RestartMessage = NodePath("CanvasLayer/RestartMessage")
+PlayerScene = ExtResource("4_mw8o4")
+PlayerDisk = NodePath("PlayerDisk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreValue" type="Label" parent="CanvasLayer"]
+offset_left = 9.0
+offset_right = 52.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0.015180005, 0.006600001, 0.03, 1)
+theme_override_constants/outline_size = 4
+text = "Score: 0"
+
+[node name="RestartMessage" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_top = 64.0
+offset_right = 102.5
+offset_bottom = 87.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0.015180005, 0.006600001, 0.03, 1)
+theme_override_constants/outline_size = 4
+text = "Left Click to Restart"
 
 [node name="pegs" type="Node2D" parent="."]
 
@@ -104,7 +143,7 @@ corner_radius = 0.0
 metadata/_custom_type_script = "uid://cruyleaghp5rr"
 
 [node name="wall1" type="StaticBody2D" parent="bottom region"]
-position = Vector2(0, 774)
+position = Vector2(1, 769)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom region/wall1"]
 position = Vector2(0, -0.875)
@@ -114,10 +153,11 @@ shape = SubResource("RectangleShape2D_oukth")
 script = ExtResource("3_oukth")
 size = Vector2(20, 140)
 corner_radius = 0.0
+fill_color = Color(0.19607843, 0.12156863, 0.30980393, 1)
 metadata/_custom_type_script = "uid://cruyleaghp5rr"
 
 [node name="wall2" type="StaticBody2D" parent="bottom region"]
-position = Vector2(625, 774)
+position = Vector2(625, 772)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom region/wall2"]
 position = Vector2(0, -0.875)
@@ -127,8 +167,86 @@ shape = SubResource("RectangleShape2D_oukth")
 script = ExtResource("3_oukth")
 size = Vector2(20, 140)
 corner_radius = 0.0
+fill_color = Color(0.19607843, 0.12156863, 0.30980393, 1)
 metadata/_custom_type_script = "uid://cruyleaghp5rr"
 
-[node name="player" parent="." instance=ExtResource("4_mw8o4")]
-position = Vector2(336, 144)
+[node name="scorebucket" type="Node2D" parent="."]
+
+[node name="bucket" parent="scorebucket" node_paths=PackedStringArray("PlankoLevelNode") instance=ExtResource("6_7ttce")]
+position = Vector2(40, 792)
+BucketScore = 100
+PlankoLevelNode = NodePath("../..")
+
+[node name="bucket2" parent="scorebucket" node_paths=PackedStringArray("PlankoLevelNode") instance=ExtResource("6_7ttce")]
+position = Vector2(136, 792)
+BucketScore = 500
+PlankoLevelNode = NodePath("../..")
+
+[node name="bucket3" parent="scorebucket" node_paths=PackedStringArray("PlankoLevelNode") instance=ExtResource("6_7ttce")]
+position = Vector2(232, 792)
+BucketScore = 1000
+PlankoLevelNode = NodePath("../..")
+
+[node name="bucket4" parent="scorebucket" node_paths=PackedStringArray("PlankoLevelNode") instance=ExtResource("6_7ttce")]
+position = Vector2(320, 792)
+BucketScore = 5000
+PlankoLevelNode = NodePath("../..")
+
+[node name="bucket5" parent="scorebucket" node_paths=PackedStringArray("PlankoLevelNode") instance=ExtResource("6_7ttce")]
+position = Vector2(408, 792)
+BucketScore = 1000
+PlankoLevelNode = NodePath("../..")
+
+[node name="bucket6" parent="scorebucket" node_paths=PackedStringArray("PlankoLevelNode") instance=ExtResource("6_7ttce")]
+position = Vector2(496, 792)
+BucketScore = 500
+PlankoLevelNode = NodePath("../..")
+
+[node name="bucket7" parent="scorebucket" node_paths=PackedStringArray("PlankoLevelNode") instance=ExtResource("6_7ttce")]
+position = Vector2(592, 792)
+BucketScore = 100
+PlankoLevelNode = NodePath("../..")
+
+[node name="PlayerDisk" type="Node2D" parent="."]
+
+[node name="player" parent="PlayerDisk" node_paths=PackedStringArray("GameCamera") instance=ExtResource("4_mw8o4")]
+position = Vector2(330, 25)
 physics_material_override = SubResource("PhysicsMaterial_6s50w")
+script = ExtResource("5_6s50w")
+GameCamera = NodePath("")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(393, 135)
+rotation = 1.9352986
+physics_material_override = SubResource("PhysicsMaterial_n0c13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-3.6510143, -3.9585342)
+shape = SubResource("RectangleShape2D_n0c13")
+
+[node name="Rectangle3" type="Node2D" parent="."]
+position = Vector2(399.36368, 135)
+rotation = 1.8828702
+script = ExtResource("3_oukth")
+size = Vector2(160, 29.091)
+corner_radius = 5.0
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(242, 126)
+rotation = 3.7502406
+physics_material_override = SubResource("PhysicsMaterial_n0c13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-7.95555, 4.325404)
+shape = SubResource("RectangleShape2D_n0c13")
+
+[node name="Rectangle4" type="Node2D" parent="."]
+position = Vector2(247.0822, 123.87413)
+rotation = 3.7502406
+script = ExtResource("3_oukth")
+size = Vector2(155.03552, 28.188364)
+corner_radius = 5.0
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="obstacles" parent="." instance=ExtResource("8_jpah1")]

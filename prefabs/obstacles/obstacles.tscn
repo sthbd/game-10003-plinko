@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://vagwek1p4l7m"]
+
+[ext_resource type="Script" uid="uid://cruyleaghp5rr" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_du5gv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jpah1"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hgs4"]
+size = Vector2(40, 40)
+
+[node name="obstacles" type="Node2D"]
+
+[node name="cube" type="StaticBody2D" parent="."]
+position = Vector2(104, 133)
+physics_material_override = SubResource("PhysicsMaterial_jpah1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cube"]
+rotation = 0.10625837
+shape = SubResource("RectangleShape2D_2hgs4")
+
+[node name="Rectangle" type="Node2D" parent="cube"]
+script = ExtResource("1_du5gv")
+size = Vector2(40, 40)
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="cube2" type="StaticBody2D" parent="."]
+position = Vector2(578, 133)
+physics_material_override = SubResource("PhysicsMaterial_jpah1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cube2"]
+rotation = 0.10625837
+shape = SubResource("RectangleShape2D_2hgs4")
+
+[node name="Rectangle" type="Node2D" parent="cube2"]
+script = ExtResource("1_du5gv")
+size = Vector2(40, 40)
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="cube3" type="StaticBody2D" parent="."]
+position = Vector2(192, 201)
+physics_material_override = SubResource("PhysicsMaterial_jpah1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cube3"]
+rotation = 0.10625837
+shape = SubResource("RectangleShape2D_2hgs4")
+
+[node name="Rectangle" type="Node2D" parent="cube3"]
+script = ExtResource("1_du5gv")
+size = Vector2(40, 40)
+metadata/_custom_type_script = "uid://cruyleaghp5rr"
+
+[node name="cube4" type="StaticBody2D" parent="."]
+position = Vector2(485, 201)
+physics_material_override = SubResource("PhysicsMaterial_jpah1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cube4"]
+rotation = 0.10625837
+shape = SubResource("RectangleShape2D_2hgs4")
+
+[node name="Rectangle" type="Node2D" parent="cube4"]
+script = ExtResource("1_du5gv")
+size = Vector2(40, 40)
+metadata/_custom_type_script = "uid://cruyleaghp5rr"

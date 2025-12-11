@@ -13,4 +13,6 @@ shape = SubResource("RectangleShape2D_yysl0")
 [node name="Rectangle" type="Node2D" parent="."]
 script = ExtResource("1_v4xmv")
 corner_radius = 0.0
+fill_color = Color(0.19654003, 0.1209, 0.31, 1)
+outline_color = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://cruyleaghp5rr"
